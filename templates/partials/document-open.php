@@ -1,3 +1,7 @@
+<?php
+// get address form the url
+$address = $_SERVER['REQUEST_URI'];
+?>
 <!doctype html>
 <html lang="en-US">
 <head>

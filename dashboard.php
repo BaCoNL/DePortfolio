@@ -3,6 +3,7 @@
 <main>
   <div class="relative isolate overflow-hidden pt-16">
     <!-- Secondary navigation -->
+    <? /*
     <header class="pb-4 pt-6 sm:pb-6">
       <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-6 px-4 sm:flex-nowrap sm:px-6 lg:px-8">
         <h1 class="text-base font-semibold leading-7 text-gray-900">Cashflow</h1>
@@ -19,12 +20,12 @@
         </a>
       </div>
     </header>
-
+    */ ?>
     <!-- Stats -->
     <div class="border-b border-b-gray-900/10 lg:border-t lg:border-t-gray-900/5">
       <dl class="mx-auto grid max-w-7xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:px-2 xl:px-0">
         <div class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8">
-          <dt class="text-sm font-medium leading-6 text-gray-500">Revenue</dt>
+          <dt class="text-sm font-medium leading-6 text-gray-500">Transaction history</dt>
           <dd class="text-xs font-medium text-gray-700">+4.75%</dd>
           <dd class="w-full flex-none text-3xl font-medium leading-10 tracking-tight text-gray-900">$405,091.00</dd>
         </div>
@@ -55,7 +56,7 @@
     <!-- Recent activity table -->
     <div>
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 class="mx-auto max-w-2xl text-base font-semibold leading-6 text-gray-900 lg:mx-0 lg:max-w-none">Recent activity</h2>
+        <h2 class="mx-auto max-w-2xl text-base font-semibold leading-6 text-gray-900 lg:mx-0 lg:max-w-none">Recent Transactions</h2>
       </div>
       <div class="mt-6 overflow-hidden border-t border-gray-100">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -64,18 +65,49 @@
               <thead class="sr-only">
               <tr>
                 <th>Amount</th>
-                <th class="hidden sm:table-cell">Client</th>
+                <th class="hidden sm:table-cell">Blockchain</th>
                 <th>More details</th>
               </tr>
               </thead>
               <tbody>
               <tr class="text-sm leading-6 text-gray-900">
                 <th scope="colgroup" colspan="3" class="relative isolate py-2 font-semibold">
-                  <time datetime="2023-03-22">Today</time>
+                  <time datetime="2023-03-22">Transactions</time>
                   <div class="absolute inset-y-0 right-full -z-10 w-screen border-b border-gray-200 bg-gray-50"></div>
                   <div class="absolute inset-y-0 left-0 -z-10 w-screen border-b border-gray-200 bg-gray-50"></div>
                 </th>
               </tr>
+              <? // Load transactions of user?>
+              <? $transactions = json_decode(file_get_contents(''));?>
+              <tr>
+                <td class="relative py-5 pr-6">
+                  <div class="flex gap-x-6">
+                    <svg class="hidden h-6 w-5 flex-none text-gray-400 sm:block" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-.75-4.75a.75.75 0 001.5 0V8.66l1.95 2.1a.75.75 0 101.1-1.02l-3.25-3.5a.75.75 0 00-1.1 0L6.2 9.74a.75.75 0 101.1 1.02l1.95-2.1v4.59z" clip-rule="evenodd" />
+                    </svg>
+                    <div class="flex-auto">
+                      <div class="flex items-start gap-x-3">
+                        <div class="text-sm font-medium leading-6 text-gray-900">$7,600.00 USD</div>
+                        <div class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-green-700 bg-green-50 ring-green-600/20">Paid</div>
+                      </div>
+                      <div class="mt-1 text-xs leading-5 text-gray-500">$500.00 tax</div>
+                    </div>
+                  </div>
+                  <div class="absolute bottom-0 right-full h-px w-screen bg-gray-100"></div>
+                  <div class="absolute bottom-0 left-0 h-px w-screen bg-gray-100"></div>
+                </td>
+                <td class="hidden py-5 pr-6 sm:table-cell">
+                  <div class="text-sm leading-6 text-gray-900">Reform</div>
+                  <div class="mt-1 text-xs leading-5 text-gray-500">Website redesign</div>
+                </td>
+                <td class="py-5 text-right">
+                  <div class="flex justify-end">
+                    <a href="#" class="text-sm font-medium leading-6 text-indigo-600 hover:text-indigo-500">View<span class="hidden sm:inline"> transaction</span><span class="sr-only">, invoice #00012, Reform</span></a>
+                  </div>
+                  <div class="mt-1 text-xs leading-5 text-gray-500">Invoice <span class="text-gray-900">#00012</span></div>
+                </td>
+              </tr>
+
               <tr>
                 <td class="relative py-5 pr-6">
                   <div class="flex gap-x-6">
@@ -160,41 +192,8 @@
                 </td>
               </tr>
 
-              <tr class="text-sm leading-6 text-gray-900">
-                <th scope="colgroup" colspan="3" class="relative isolate py-2 font-semibold">
-                  <time datetime="2023-03-21">Yesterday</time>
-                  <div class="absolute inset-y-0 right-full -z-10 w-screen border-b border-gray-200 bg-gray-50"></div>
-                  <div class="absolute inset-y-0 left-0 -z-10 w-screen border-b border-gray-200 bg-gray-50"></div>
-                </th>
-              </tr>
-              <tr>
-                <td class="relative py-5 pr-6">
-                  <div class="flex gap-x-6">
-                    <svg class="hidden h-6 w-5 flex-none text-gray-400 sm:block" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-.75-4.75a.75.75 0 001.5 0V8.66l1.95 2.1a.75.75 0 101.1-1.02l-3.25-3.5a.75.75 0 00-1.1 0L6.2 9.74a.75.75 0 101.1 1.02l1.95-2.1v4.59z" clip-rule="evenodd" />
-                    </svg>
-                    <div class="flex-auto">
-                      <div class="flex items-start gap-x-3">
-                        <div class="text-sm font-medium leading-6 text-gray-900">$14,000.00 USD</div>
-                        <div class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-green-700 bg-green-50 ring-green-600/20">Paid</div>
-                      </div>
-                      <div class="mt-1 text-xs leading-5 text-gray-500">$900.00 tax</div>
-                    </div>
-                  </div>
-                  <div class="absolute bottom-0 right-full h-px w-screen bg-gray-100"></div>
-                  <div class="absolute bottom-0 left-0 h-px w-screen bg-gray-100"></div>
-                </td>
-                <td class="hidden py-5 pr-6 sm:table-cell">
-                  <div class="text-sm leading-6 text-gray-900">SavvyCal</div>
-                  <div class="mt-1 text-xs leading-5 text-gray-500">Website redesign</div>
-                </td>
-                <td class="py-5 text-right">
-                  <div class="flex justify-end">
-                    <a href="#" class="text-sm font-medium leading-6 text-indigo-600 hover:text-indigo-500">View<span class="hidden sm:inline"> transaction</span><span class="sr-only">, invoice #00010, SavvyCal</span></a>
-                  </div>
-                  <div class="mt-1 text-xs leading-5 text-gray-500">Invoice <span class="text-gray-900">#00010</span></div>
-                </td>
-              </tr>
+
+
               </tbody>
             </table>
           </div>
