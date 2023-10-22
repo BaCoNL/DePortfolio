@@ -57,9 +57,11 @@ $totalTransactions = count($transactions->result);
                       clip-rule="evenodd"></path>
               </svg>
             <? endif; ?>
-            <div class="flex-auto">
+            <div class="flex-initial">
               <div class="flex items-start gap-x-3">
-                <div class="text-sm font-medium leading-6 text-gray-900"><?= $transaction->value; ?></div>
+                <!--                <div class="text-sm font-medium leading-6 text-gray-900">-->
+                <?php //= $transaction->value; 
+                ?><!--</div>-->
                 <? if ($transaction->status === true): ?>
                   <div
                       class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-green-700 bg-green-50 ring-green-600/20">
@@ -74,15 +76,13 @@ $totalTransactions = count($transactions->result);
               </div>
               <div class="mt-1 text-xs leading-5 text-gray-500"><?= $transaction->method; ?></div>
             </div>
+            <div class="flex">
+              From: <?= $transaction->from_address; ?><br/>
+              To: <?= $transaction->to_address; ?>
+            </div>
           </div>
           <div class="absolute bottom-0 right-full h-px w-screen bg-gray-100"></div>
           <div class="absolute bottom-0 left-0 h-px w-screen bg-gray-100"></div>
-        </td>
-        <td class="relative py-5 pr-6">
-          <div class="flex gap-x-6 text-sm font-medium leading-6 text-gray-900">
-            From: <?= $transaction->from_address; ?><br/>
-            To: <?= $transaction->to_address; ?>
-          </div>
         </td>
 
 
@@ -94,11 +94,15 @@ $totalTransactions = count($transactions->result);
           <div class="flex justify-end">
             <a href="#"
                class="text-sm font-medium leading-6 text-indigo-600 hover:text-indigo-500">View<span
-                  class="hidden sm:inline"> transaction</span><span
-                  class="sr-only">, invoice #00012, Reform</span></a>
+                  class="hidden sm:inline"> transaction</span></a>
           </div>
-          <div class="mt-1 text-xs leading-5 text-gray-500">Invoice <span
-                class="text-gray-900">#00012</span></div>
+          <div class="mt-1 text-xs leading-5 text-gray-500">Time <span
+                class="text-gray-900">
+              <time id="time-<?= $transaction->block_timestamp ?>"></time>
+              <script type="text/javascript">
+                  document.getElementById("time-<?= $transaction->block_timestamp ?>").textContent = moment.unix(<?= $transaction->block_timestamp ?>).format('YYYY-MM-DD HH:mm:ss');
+              </script>
+            </span></div>
         </td>
       </tr>
       <?

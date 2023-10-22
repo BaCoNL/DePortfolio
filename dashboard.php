@@ -42,6 +42,7 @@
           <div
               class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 lg:border-l">
             <dt class="text-sm font-medium leading-6 text-gray-500">Portfolio balance</dt>
+            <div>
             <div hx-get="templates/views/dashboardPortfolioTotal.php?address=<?= $address; ?>&blockchain=<?= $blockchain->chain_name; ?>"
                  hx-trigger="load">
               <div class="htmx-indicator">
@@ -53,6 +54,7 @@
                 Processing...
               </div>
             </div>
+          </div>
           </div>
           <div
               class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 sm:border-l">
