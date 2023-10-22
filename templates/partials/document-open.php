@@ -1,6 +1,9 @@
 <?php
+// include config file
+include 'app/config.php';
+
 // get address form the url
-$address = $_SERVER['REQUEST_URI'];
+$address = $_GET['address'];
 ?>
 <!doctype html>
 <html lang="en-US">
