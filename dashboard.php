@@ -104,9 +104,12 @@
                           <div class="flex items-start gap-x-3">
                             <div class="text-sm font-medium leading-6 text-gray-900">$7,600.00
                               USD <?= $transaction->value; ?></div>
-                            <? if ($transaction->method): ?>
+                            <? if ($transaction->status === true ): ?>
                               <div
-                                  class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-green-700 bg-green-50 ring-green-600/20"><?= $transaction->method; ?></div>
+                                  class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-green-700 bg-green-50 ring-green-600/20">Success</div>
+                            <? else: ?>
+                              <div
+                                  class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-red-700 bg-red-50 ring-red-600/20">Failed</div>
                             <? endif; ?>
                           </div>
                           <div class="mt-1 text-xs leading-5 text-gray-500"><?= $transaction->method; ?></div>
