@@ -78,7 +78,7 @@
                 </th>
               </tr>
               <? // Load transactions of user?>
-              <? $transactions = json_decode(file_get_contents(''));?>
+              <? $transactions = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/transactions/0xDbe8E2679859aB2355f3d9187690abD5b3e6e986?api-key=d0aa48a5dc3268a11b5dc9b16b83e80a119573fc'));?>
               <tr>
                 <td class="relative py-5 pr-6">
                   <div class="flex gap-x-6">
