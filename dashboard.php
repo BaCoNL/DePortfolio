@@ -23,15 +23,43 @@
     */ ?>
       <!-- Stats -->
       <? // get data for stats
-      $transactions = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/transactions/' . $address . '?api-key=' . $deCommasApiKey . ''));
+      $transactions = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/transactions/' . $address . '?limit=100?api-key=' . $deCommasApiKey . ''));
       $countTransactions = count($transactions->result);
+      if ($countTransactions === 100){
+        $countTransactions = '100+';
+      }
 
-      $nftData = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/nfts/' . $address . '?api-key=' . $deCommasApiKey . ''));
+      $nftData = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/nfts/' . $address . '?limit=100?api-key=' . $deCommasApiKey . ''));
       $countNfts = count($nftData->result);
+      if ($countNfts === 100){
+        $countNfts = '100+';
+      }
       ?>
 
       <div class="border-b border-b-gray-900/10 lg:border-t lg:border-t-gray-900/5">
         <dl class="mx-auto grid max-w-7xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:px-2 xl:px-0">
+
+          <div
+              class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 lg:border-l">
+            <dt class="text-sm font-medium leading-6 text-gray-500">Portfolio balance</dt>
+            <div hx-get="templates/views/dashboardPortfolioTotal.php?address=<?= $address; ?>&blockchain=<?= $blockchain->chain_name; ?>"
+                 hx-trigger="load">
+              <div class="htmx-indicator">
+                <svg class="animate-spin h-3 w-3 mr-3 inline" xmlns="http://www.w3.org/2000/svg" fill="none"
+                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                </svg>
+                Processing...
+              </div>
+            </div>
+          </div>
+          <div
+              class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 sm:border-l">
+            <dt class="text-sm font-medium leading-6 text-gray-500">Expenses</dt>
+            <dd class="text-xs font-medium text-rose-600">+10.18%</dd>
+            <dd class="w-full flex-none text-3xl font-medium leading-10 tracking-tight text-gray-900">$30,156.00</dd>
+          </div>
           <div
               class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8">
             <dt class="text-sm font-medium leading-6 text-gray-500">Transaction Count</dt>
@@ -41,18 +69,6 @@
               class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 sm:border-l">
             <dt class="text-sm font-medium leading-6 text-gray-500">NFT Count</dt>
             <dd class="w-full flex-none text-3xl font-medium leading-10 tracking-tight text-gray-900"><?= $countNfts; ?></dd>
-          </div>
-          <div
-              class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 lg:border-l">
-            <dt class="text-sm font-medium leading-6 text-gray-500">Outstanding invoices</dt>
-            <dd class="text-xs font-medium text-gray-700">-1.39%</dd>
-            <dd class="w-full flex-none text-3xl font-medium leading-10 tracking-tight text-gray-900">$245,988.00</dd>
-          </div>
-          <div
-              class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 sm:border-l">
-            <dt class="text-sm font-medium leading-6 text-gray-500">Expenses</dt>
-            <dd class="text-xs font-medium text-rose-600">+10.18%</dd>
-            <dd class="w-full flex-none text-3xl font-medium leading-10 tracking-tight text-gray-900">$30,156.00</dd>
           </div>
         </dl>
       </div>
