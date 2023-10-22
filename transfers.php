@@ -11,7 +11,7 @@
         <div class="mt-6 overflow-hidden border-t border-gray-100">
           <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-              <div hx-get="templates/views/tokenTransfers.php?limit=5&address=<?= $address; ?>"
+              <div hx-get="templates/views/tokenTransfers.php?limit=&address=<?= $address; ?>"
                    hx-trigger="load">
                 <div class="htmx-indicator">
                   <svg class="animate-spin h-3 w-3 mr-3 inline" xmlns="http://www.w3.org/2000/svg" fill="none"
