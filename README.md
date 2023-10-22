@@ -2,4 +2,4 @@
 Portfolio tracker using DeCommas.
 
 ## build wiht
-Tailwind, PHP & HTMX
+Tailwind, HTMX & php
