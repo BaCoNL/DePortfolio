@@ -12,10 +12,9 @@
       <img class="h-8 w-auto" src="assets/img/DePortfolioNarrow.png" alt="DePortfolio">
     </div>
     <nav class="hidden md:flex md:gap-x-11 md:text-sm md:font-semibold md:leading-6 md:text-gray-700">
-      <a href="#">Home</a>
-      <a href="#">Invoices</a>
-      <a href="#">Clients</a>
-      <a href="#">Expenses</a>
+      <a href="#">Dashboard</a>
+      <a href="#">NFT</a>
+      <a href="#">Coins</a>
     </nav>
     <div class="flex flex-1 items-center justify-end gap-x-8">
       <button type="button" class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
@@ -50,10 +49,9 @@
         </div>
       </div>
       <div class="mt-2 space-y-2">
-        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Home</a>
-        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Invoices</a>
-        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Clients</a>
-        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Expenses</a>
+        <a href="dashboard.php" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Dashboard</a>
+        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">NFT</a>
+        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Coins</a>
       </div>
     </div>
   </div>
