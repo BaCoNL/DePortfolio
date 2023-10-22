@@ -158,7 +158,7 @@
         <div class="mt-6 overflow-hidden border-t border-gray-100">
           <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-              <div hx-get="templates/views/tokenTransfers.php?limit=5&address=<?= $address; ?>"
+              <div hx-get="templates/views/tokenTransactions.php?limit=5&address=<?= $address; ?>"
                    hx-trigger="load">
                 <div class="htmx-indicator">
                   <svg class="animate-spin h-3 w-3 mr-3 inline" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -169,7 +169,7 @@
                   Processing...
                 </div>
               </div>
-              <a href="transfers.php?address=<?= $address; ?>"
+              <a href="transactions.php?address=<?= $address; ?>"
                  class="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500 float-right">
                 View all
               </a>

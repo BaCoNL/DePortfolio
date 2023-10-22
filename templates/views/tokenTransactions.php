@@ -98,9 +98,9 @@ $totalTransactions = count($transactions->result);
           </div>
           <div class="mt-1 text-xs leading-5 text-gray-500">Time <span
                 class="text-gray-900">
-              <time id="time-<?= $transaction->block_timestamp ?>"></time>
+              <time id="time-<?= $transactionCount ?>"></time>
               <script type="text/javascript">
-                  document.getElementById("time-<?= $transaction->block_timestamp ?>").textContent = moment.unix(<?= $transaction->block_timestamp ?>).format('YYYY-MM-DD HH:mm:ss');
+                  document.getElementById("time-<?= $transactionCount ?>").textContent = moment.unix(<?= $transaction->block_timestamp ?>).format('YYYY-MM-DD HH:mm:ss');
               </script>
             </span></div>
         </td>
