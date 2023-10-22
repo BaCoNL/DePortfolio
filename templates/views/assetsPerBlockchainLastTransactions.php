@@ -3,7 +3,7 @@ include '../../app/config.php';
 
 $blockchain = $_GET['blockchain'];
 $address = $_GET['address'];
-sleep(rand(0, 3));
+sleep(rand(1, 3));
 
 $transactions = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/transactions/' . $address . '?networks='. $blockchain . '&api-key=' . $deCommasApiKey . ''));
 ?>

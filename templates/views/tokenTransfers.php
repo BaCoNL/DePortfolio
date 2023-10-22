@@ -24,7 +24,9 @@ $address = $_GET['address'];
     </th>
   </tr>
   <? // Load transactions of user?>
-  <? $transactions = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/transactions/' . $address . '?api-key=' . $deCommasApiKey . ''));
+  <?
+  sleep(rand(1, 2));
+  $transactions = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/transactions/' . $address . '?api-key=' . $deCommasApiKey . ''));
   $transactionCount = 0;
   foreach ($transactions->result as $transaction):
     if ($transactionCount < $limit):
