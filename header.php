@@ -9,7 +9,7 @@
           <path fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10zm0 5.25a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
         </svg>
       </button>
-      <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+      <img class="h-8 w-auto" src="assets/img/DePortfolioNarrow.png" alt="DePortfolio">
     </div>
     <nav class="hidden md:flex md:gap-x-11 md:text-sm md:font-semibold md:leading-6 md:text-gray-700">
       <a href="#">Home</a>
@@ -44,8 +44,8 @@
         </button>
         <div class="-ml-0.5">
           <a href="#" class="-m-1.5 block p-1.5">
-            <span class="sr-only">Your Company</span>
-            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
+            <span class="sr-only">DePortfolio</span>
+            <img class="h-8 w-auto" src="assets/img/DePortfolioNarrow.png" alt="">
           </a>
         </div>
       </div>
