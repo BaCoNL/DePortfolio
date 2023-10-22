@@ -167,8 +167,10 @@
                   Processing...
                 </div>
               </div>
-              <a href="#" class="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500 float-right">View
-                all</a>
+              <a href="transfers.php?address=<?= $address; ?>"
+                 class="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500 float-right">
+                View all
+              </a>
             </div>
           </div>
         </div>
