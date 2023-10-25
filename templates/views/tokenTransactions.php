@@ -12,7 +12,9 @@ $address = $_GET['address'];
 $transactions = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/transactions/' . $address . '?limit=100&api-key=' . $deCommasApiKey . ''));
 
 $totalTransactions = count($transactions->result);
-
+if ($totalTransactions === 100){
+  $totalTransactions = '100+';
+}
 ?>
 <table class="w-full text-left">
   <thead class="sr-only">
@@ -92,7 +94,7 @@ $totalTransactions = count($transactions->result);
         </td>
         <td class="py-5 text-right">
           <div class="flex justify-end">
-            <a href="#"
+            <a href="transactionsDetails.php?hash=<?= $transaction->hash; ?>"
                class="text-sm font-medium leading-6 text-indigo-600 hover:text-indigo-500">View<span
                   class="hidden sm:inline"> transaction</span></a>
           </div>
