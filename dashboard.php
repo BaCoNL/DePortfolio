@@ -1,4 +1,7 @@
-<?php include 'header.php'; ?>
+<?php include 'header.php';
+// check if user has set an address else show wallet connect
+if ($address):
+  ?>
 
   <main>
     <div class="relative isolate overflow-hidden pt-16">
@@ -25,13 +28,13 @@
       <? // get data for stats
       $transactions = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/transactions/' . $address . '?limit=100?api-key=' . $deCommasApiKey . ''));
       $countTransactions = count($transactions->result);
-      if ($countTransactions === 100){
+      if ($countTransactions === 100) {
         $countTransactions = '100+';
       }
 
       $nftData = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/nfts/' . $address . '?limit=100?api-key=' . $deCommasApiKey . ''));
       $countNfts = count($nftData->result);
-      if ($countNfts === 100){
+      if ($countNfts === 100) {
         $countNfts = '100+';
       }
       ?>
@@ -43,18 +46,19 @@
               class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 lg:border-l">
             <dt class="text-sm font-medium leading-6 text-gray-500">Portfolio balance</dt>
             <div>
-            <div hx-get="templates/views/dashboardPortfolioTotal.php?address=<?= $address; ?>&blockchain=<?= $blockchain->chain_name; ?>"
-                 hx-trigger="load">
-              <div class="htmx-indicator">
-                <svg class="animate-spin h-3 w-3 mr-3 inline" xmlns="http://www.w3.org/2000/svg" fill="none"
-                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
-                </svg>
-                Processing...
+              <div
+                  hx-get="templates/views/dashboardPortfolioTotal.php?address=<?= $address; ?>&blockchain=<?= $blockchain->chain_name; ?>"
+                  hx-trigger="load">
+                <div class="htmx-indicator">
+                  <svg class="animate-spin h-3 w-3 mr-3 inline" xmlns="http://www.w3.org/2000/svg" fill="none"
+                       viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                  </svg>
+                  Processing...
+                </div>
               </div>
             </div>
-          </div>
           </div>
           <div
               class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 sm:border-l">
@@ -95,55 +99,59 @@
           <ul role="list" class="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
             <? // get blockchains that hold assets
             $blockchains = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/coins/' . $address . '?api-key=' . $deCommasApiKey . ''));
-            foreach($blockchains->result as $blockchain): ?>
-            <li class="overflow-hidden rounded-xl border border-gray-200">
-              <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
-                <? if ($blockchain->chain_name === 'optimism'): ?>
-                  <img src="https://assets.coingecko.com/coins/images/25244/standard/Optimism.png" alt="<?= $blockchain->chain_name; ?>"
-                       class="h-12 w-12 p-2 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
-              <? else:?>
-                <img src="<?= $blockchain->logo_url; ?>" alt="<?= $blockchain->chain_name; ?>"
-                     class="h-12 w-12 p-2 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
-                <? endif; ?>
-                <div class="text-sm font-medium leading-6 text-gray-900"><?= ucfirst($blockchain->chain_name); ?></div>
+            foreach ($blockchains->result as $blockchain): ?>
+              <li class="overflow-hidden rounded-xl border border-gray-200">
+                <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
+                  <? if ($blockchain->chain_name === 'optimism'): ?>
+                    <img src="https://assets.coingecko.com/coins/images/25244/standard/Optimism.png"
+                         alt="<?= $blockchain->chain_name; ?>"
+                         class="h-12 w-12 p-2 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
+                  <? else: ?>
+                    <img src="<?= $blockchain->logo_url; ?>" alt="<?= $blockchain->chain_name; ?>"
+                         class="h-12 w-12 p-2 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
+                  <? endif; ?>
+                  <div
+                      class="text-sm font-medium leading-6 text-gray-900"><?= ucfirst($blockchain->chain_name); ?></div>
 
 
-              </div>
-              <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
-                <div class="flex justify-between gap-x-4 py-3">
-                  <dt class="text-gray-500">Last transaction</dt>
-                  <dd class="text-gray-700">
-                    <div hx-get="templates/views/assetsPerBlockchainLastTransactions.php?limit=5&address=<?= $address; ?>&blockchain=<?= $blockchain->chain_name; ?>"
-                         hx-trigger="load">
-                      <div class="htmx-indicator">
-                        <svg class="animate-spin h-3 w-3 mr-3 inline" xmlns="http://www.w3.org/2000/svg" fill="none"
-                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
-                        </svg>
-                        Processing...
-                      </div>
-                    </div>
-                  </dd>
                 </div>
-                <div class="flex justify-between gap-x-4 py-3">
-                  <dt class="text-gray-500">Amount</dt>
-                  <dd class="flex items-start gap-x-2">
-                    <div hx-get="templates/views/assetsPerBlockchainTotalAssetsUsd.php?limit=5&address=<?= $address; ?>&blockchain=<?= $blockchain->chain_name; ?>"
-                         hx-trigger="load">
-                      <div class="htmx-indicator">
-                        <svg class="animate-spin h-3 w-3 mr-3 inline" xmlns="http://www.w3.org/2000/svg" fill="none"
-                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
-                        </svg>
-                        Processing...
+                <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
+                  <div class="flex justify-between gap-x-4 py-3">
+                    <dt class="text-gray-500">Last transaction</dt>
+                    <dd class="text-gray-700">
+                      <div
+                          hx-get="templates/views/assetsPerBlockchainLastTransactions.php?limit=5&address=<?= $address; ?>&blockchain=<?= $blockchain->chain_name; ?>"
+                          hx-trigger="load">
+                        <div class="htmx-indicator">
+                          <svg class="animate-spin h-3 w-3 mr-3 inline" xmlns="http://www.w3.org/2000/svg" fill="none"
+                               viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                          </svg>
+                          Processing...
+                        </div>
                       </div>
-                    </div>
-                  </dd>
-                </div>
-              </dl>
-            </li>
+                    </dd>
+                  </div>
+                  <div class="flex justify-between gap-x-4 py-3">
+                    <dt class="text-gray-500">Amount</dt>
+                    <dd class="flex items-start gap-x-2">
+                      <div
+                          hx-get="templates/views/assetsPerBlockchainTotalAssetsUsd.php?limit=5&address=<?= $address; ?>&blockchain=<?= $blockchain->chain_name; ?>"
+                          hx-trigger="load">
+                        <div class="htmx-indicator">
+                          <svg class="animate-spin h-3 w-3 mr-3 inline" xmlns="http://www.w3.org/2000/svg" fill="none"
+                               viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                          </svg>
+                          Processing...
+                        </div>
+                      </div>
+                    </dd>
+                  </div>
+                </dl>
+              </li>
             <? endforeach; ?>
           </ul>
         </div>
@@ -181,6 +189,24 @@
 
     </div>
   </main>
+<?php else: ?>
+  <main>
+    <div class="relative isolate overflow-hidden pt-16">
+      <div class="mx-auto grid max-w-7xl grid-cols-12  lg:px-2 xl:px-0">
+        <div class="col-span-12 text-center pt-16">
+          <div class="font-semibold text-3xl">Connect your wallet</div>
+        </div>
+        <div class="col-span-12 text-center">
+          <input type="button"
+                 class="mt-5 rounded-md bg-orange-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+                 value="Connect Wallet" onclick="connect();">
+          <div id="account" class="py-3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+<?php endif; ?>
 
 
 <?php include 'footer.php'; ?>

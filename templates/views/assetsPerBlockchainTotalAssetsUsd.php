@@ -8,7 +8,6 @@ $address = $_GET['address'];
 // get coins from the api
 $coins = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/coins/' . $address . '?networks='. $blockchain . '&api-key=' . $deCommasApiKey . ''));
 $amount = (convertToDecimal($coins->result[0]->amount, $coins->result[0]->decimals)* $coins->result[0]->actual_price);
-sleep(rand(1, 3));
 // get tokens from the api
 $erc20Coins = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/tokens/' . $address . '?networks='. $blockchain . '&api-key=' . $deCommasApiKey . ''));
 foreach ($erc20Coins->result as $erc20Coin):

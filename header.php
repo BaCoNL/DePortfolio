@@ -27,7 +27,7 @@
       <a href="#">Coins</a>
     </nav>
 
-    <div class="flex flex-1 items-center justify-end gap-x-8">
+    <div class="flex flex-1 items-center justify-end gap-x-8" id="accountAvatar">
       <? /*
       <button type="button" class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
         <span class="sr-only">View notifications</span>
