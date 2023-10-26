@@ -14,6 +14,7 @@ $address = $_GET['address'];
   <!-- load momentjs -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/4.2.1/web3.min.js"></script>
   <script src="https://c0f4f41c-2f55-4863-921b-sdk-docs.github.io/cdn/metamask-sdk.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js"></script>
 
   <!-- load alpine js -->
   <!--  <script src="//unpkg.com/alpinejs" defer></script>-->
