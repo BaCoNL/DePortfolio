@@ -26,7 +26,9 @@
       <a href="#">NFT</a>
       <a href="#">Coins</a>
     </nav>
+
     <div class="flex flex-1 items-center justify-end gap-x-8">
+      <? /*
       <button type="button" class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
         <span class="sr-only">View notifications</span>
         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -41,7 +43,9 @@
              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
              alt="">
       </a>
+  */ ?>
     </div>
+
   </div>
 
 
