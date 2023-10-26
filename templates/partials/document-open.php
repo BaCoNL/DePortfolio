@@ -27,3 +27,4 @@ $address = $_GET['address'];
 
   <title>De Portfolio</title>
 </head>
+<body class="bg-white">
