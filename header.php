@@ -24,7 +24,11 @@
         <a href="dashboard.php">Dashboard</a>
       <? endif; ?>
       <a href="#">NFT</a>
-      <a href="#">Coins</a>
+      <? if ($address): ?>
+        <a href="tokens?address=<?= $address; ?>">Tokens</a>
+      <? else: ?>
+        <a href="tokens">Tokens</a>
+      <? endif; ?>
     </nav>
 
     <div class="flex flex-1 items-center justify-end gap-x-8" id="accountAvatar">
