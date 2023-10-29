@@ -25,9 +25,9 @@
       <? endif; ?>
       <a href="#">NFT</a>
       <? if ($address): ?>
-        <a href="tokens?address=<?= $address; ?>">Tokens</a>
+        <a href="user-assets?address=<?= $address; ?>">Assets</a>
       <? else: ?>
-        <a href="tokens">Tokens</a>
+        <a href="user-assets">Assets</a>
       <? endif; ?>
     </nav>
 
