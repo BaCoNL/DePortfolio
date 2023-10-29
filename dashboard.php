@@ -62,9 +62,18 @@ if ($address):
           </div>
           <div
               class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 sm:border-l">
-            <dt class="text-sm font-medium leading-6 text-gray-500">Expenses</dt>
-            <dd class="text-xs font-medium text-rose-600">+10.18%</dd>
-            <dd class="w-full flex-none text-3xl font-medium leading-10 tracking-tight text-gray-900">$30,156.00</dd>
+            <div
+                hx-get="templates/views/dashboardTokenTotal?address=<?= $address; ?>"
+                hx-trigger="load">
+              <div class="htmx-indicator">
+                <svg class="animate-spin h-3 w-3 mr-3 inline" xmlns="http://www.w3.org/2000/svg" fill="none"
+                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                </svg>
+                Processing...
+              </div>
+            </div>
           </div>
           <div
               class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8">
@@ -196,12 +205,10 @@ if ($address):
         <div class="col-span-12 text-center pt-16">
           <div class="font-semibold text-3xl">Connect your wallet</div>
         </div>
-        <div class="col-span-12 text-center">
+        <div class="col-span-12 text-center" id="dashboardLink">
           <input type="button"
                  class="mt-5 rounded-md bg-orange-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
                  value="Connect Wallet" onclick="connect();">
-          <div id="account" class="py-3">
-          </div>
         </div>
       </div>
     </div>
