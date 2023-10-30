@@ -39,8 +39,7 @@ if ($totalTransactions === 100){
   //  sleep(rand(1, 2));
   $transactionCount = 0;
   foreach ($transactions->result as $transaction):
-    if ($transactionCount < $limit):
-      ?>
+    if ($transactionCount < $limit): ?>
       <tr>
         <td class="relative py-5 pr-6">
           <div class="flex gap-x-6">
