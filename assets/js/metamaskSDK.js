@@ -9,7 +9,7 @@ function updateProfileElements(account) {
         </a>`;
     document.getElementById("dashboardLink").innerHTML = `
         <div class="py-5">
-           <a href="dashboard?address=${account}" class="mt-5 rounded-md bg-orange-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600">
+           <a href="dashboard?address=${account}" class="mt-5 pulse rounded-md bg-orange-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600">
               Open Dashboard
            </a>
            <div class="pt-5">${account}</div>
