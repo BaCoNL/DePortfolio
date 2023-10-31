@@ -15,6 +15,13 @@ function updateProfileElements(account) {
 
         </div>
         `;
+
+    document.getElementById("menuItems").innerHTML = `
+        <a href="dashboard?address=${account}">Dashboard</a>
+        <a href="nft?address=${account}">NFT</a>
+        <a href="user-assets?address=${account}">Assets</a>
+`;
+
     console.log(account);
 }
 

@@ -17,18 +17,10 @@
       </button>
       <img class="h-10 w-auto" src="assets/img/DePortfolioNarrow.png" alt="DePortfolio">
     </div>
-    <nav class="hidden md:flex md:gap-x-11 md:text-sm md:font-semibold md:leading-6 md:text-gray-700">
-      <? if ($address): ?>
-        <a href="dashboard.php?address=<?= $address; ?>">Dashboard</a>
-      <? else: ?>
-        <a href="dashboard.php">Dashboard</a>
-      <? endif; ?>
-      <a href="#">NFT</a>
-      <? if ($address): ?>
-        <a href="user-assets?address=<?= $address; ?>">Assets</a>
-      <? else: ?>
+    <nav class="hidden md:flex md:gap-x-11 md:text-sm md:font-semibold md:leading-6 md:text-gray-700" id="menuItems">
+        <a href="dashboard">Dashboard</a>
+        <a href="nft">NFT</a>
         <a href="user-assets">Assets</a>
-      <? endif; ?>
     </nav>
 
     <div class="flex flex-1 items-center justify-end gap-x-8" id="accountAvatar">
