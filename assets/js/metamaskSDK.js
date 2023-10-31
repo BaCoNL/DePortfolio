@@ -20,7 +20,12 @@ function updateProfileElements(account) {
         <a href="dashboard?address=${account}">Dashboard</a>
         <a href="nft?address=${account}">NFT</a>
         <a href="user-assets?address=${account}">Assets</a>
-`;
+        `;
+    document.getElementById("getStarted").innerHTML = `
+        <a href="dashboard?address=${account}"
+               class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get
+              started</a>
+        `;
 
     console.log(account);
 }
