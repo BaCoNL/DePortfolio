@@ -1,4 +1,7 @@
 <?php include 'header.php';
+
+include 'app/functions/blockchainIcon.php';
+
 // check if user has set an address else show wallet connect
 if ($address):
   ?>
@@ -111,14 +114,10 @@ if ($address):
             foreach ($blockchains->result as $blockchain): ?>
               <li class="overflow-hidden rounded-xl border border-gray-200">
                 <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
-                  <? if ($blockchain->chain_name === 'optimism'): ?>
-                    <img src="https://assets.coingecko.com/coins/images/25244/standard/Optimism.png"
-                         alt="<?= $blockchain->chain_name; ?>"
-                         class="h-12 w-12 p-2 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
-                  <? else: ?>
-                    <img src="<?= $blockchain->logo_url; ?>" alt="<?= $blockchain->chain_name; ?>"
-                         class="h-12 w-12 p-2 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
-                  <? endif; ?>
+
+                  <img src="<?= (blockchainIcon($blockchain->chain_name)); ?>" alt="<?= $blockchain->chain_name; ?>"
+                       class="h-12 w-12 p-2 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
+                                    
                   <div
                       class="text-sm font-medium leading-6 text-gray-900"><?= ucfirst($blockchain->chain_name); ?></div>
 
