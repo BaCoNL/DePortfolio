@@ -26,13 +26,6 @@ $transaction = $transaction->result;
 
 </div>
 <div class="grid grid-cols-12 gap-5 p-4">
-  <?
-  //$transaction = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/transaction/' . $blockchain . '/' . $hash . '?api-key=' . $deCommasApiKey . ''));
-
-  //var_dump($transaction);
-
-  //$transaction = $transaction->result;
-  ?>
   <div class="col-span-3">
     Transaction Hash:
   </div>
@@ -43,7 +36,7 @@ $transaction = $transaction->result;
     Transaction Status:
   </div>
   <div class="col-span-9">
-    <?= $transaction->is_error === 0 ? '<span class="text-red-500">No</span>' : '<span class="text-green-500">Yes</span>';
+    <?= $transaction->status === false ? '<span class="text-red-500">Failed</span>' : '<span class="text-green-500">Success</span>';
     ?>
   </div>
   <div class="col-span-3">
@@ -59,7 +52,7 @@ $transaction = $transaction->result;
     <span id="time-<?= $count; ?>"></span>
 
     <script type="text/javascript">
-        document.getElementById("time-<?= $count; ?>").textContent = moment.unix(<?= $transaction->time_stamp; ?>).format('YYYY-MM-DD HH:mm:ss');
+        document.getElementById("time-<?= $count; ?>").textContent = moment.unix(<?= $transaction->block_timestamp; ?>).format('YYYY-MM-DD HH:mm:ss');
     </script>
   </div>
   <div class="col-span-12 border-t border-gray-200"></div>
@@ -67,25 +60,13 @@ $transaction = $transaction->result;
     From:
   </div>
   <div class="col-span-9">
-    <a href="address.php?address=<?= $transaction->from; ?>">
-      <?= $transaction->from;
-      if ($transaction->from === '0x794a61358d6845594f94dc1db02a252b5b4814ad') {
-        echo ' (Aave: Pool V3)';
-      } ?>
-    </a>
-
+    <?= $transaction->from_address; ?>
   </div>
   <div class="col-span-3">
     To:
   </div>
   <div class="col-span-9">
-    <a href="address.php?address=<?= $transaction->to; ?>">
-      <?= $transaction->to;
-      if ($transaction->to === '0x794a61358d6845594f94dc1db02a252b5b4814ad') {
-        echo ' (Aave: Pool V3)';
-      }
-      ?>
-    </a>
+    <?= $transaction->to_address; ?>
   </div>
   <div class="col-span-12 border-t border-gray-200"></div>
 
@@ -108,30 +89,14 @@ $transaction = $transaction->result;
     <?= $transaction->gas_price; ?>
   </div>
   <div class="col-span-3">
-    Function Name:
+    Method:
   </div>
   <div class="col-span-9">
     <?php
     // Remove every character after ( in function_name
-    echo substr($transaction->function_name, 0, strpos($transaction->function_name, '('));
+    echo $transaction->method;
     ?>
   </div>
 
-  <div class="col-span-12 border-t border-gray-200">
-    ERC-20 Tokens Transferred:
-  </div>
-  <?
-  $transactionDetailDetails = json_decode(file_get_contents('https://api.mosaic.fun/api/aaveTransactionsDetails?transactionHash=' . $_GET['hash']));
-  foreach (array_reverse($transactionDetailDetails) as $transactionDetail) : ?>
-    <div class="col-span-4 text-sm">
-      From: <?= $transactionDetail->from; ?>
-    </div>
-    <div class="col-span-4 text-sm">
-      To: <?= $transactionDetail->to; ?>
-    </div>
-    <div class="col-span-4 text-sm">
-      Value: <?
-      echo $transactionDetail->value ?> <?= $transactionDetail->token_symbol; ?>
-    </div>
-  <? endforeach; ?>
+
 </div>
