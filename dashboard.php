@@ -117,7 +117,7 @@ if ($address):
 
                   <img src="<?= (blockchainIcon($blockchain->chain_name)); ?>" alt="<?= $blockchain->chain_name; ?>"
                        class="h-12 w-12 p-2 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
-                                    
+
                   <div
                       class="text-sm font-medium leading-6 text-gray-900"><?= ucfirst($blockchain->chain_name); ?></div>
 

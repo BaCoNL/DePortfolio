@@ -35,18 +35,33 @@
                   ?>
                   <tr class="even:bg-gray-50">
                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
-                      <? if ($token->logo_url):?>
-                      <img src="<?= $token->logo_url; ?>" class="w-8 inline" alt="<?= $token->name; ?>">
-                      <? else:?>
+                      <? if ($token->logo_url): ?>
+                        <img src="<?= $token->logo_url; ?>" class="w-8 inline" alt="<?= $token->name; ?>">
+                      <? else: ?>
                         <img src="assets/img/unknown-token.jpeg" alt="Unknown Token"
-                        class="w-8 inline">
+                             class="w-8 inline">
                       <? endif; ?>
                       <?= $token->name; ?>
                     </td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= $token->chain_name; ?></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= $token->actual_price; ?></td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                      <?
+                  if ($token->actual_price):
+                      echo $token->actual_price;
+                  else:
+                      echo 'Unknown';
+                  endif;
+                  ?>
+                    </td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= $token->amount; ?></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= $token->amount; ?></td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                      <? if ($token->actual_price):
+                        echo $token->amount*$token->actual_price;
+                      else:
+                        echo 'Unknown';
+                      endif; ?>
+                    </td>
+
 
                   </tr>
                 <? endforeach; ?>
