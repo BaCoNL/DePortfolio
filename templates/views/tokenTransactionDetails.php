@@ -1,21 +1,37 @@
 <?php
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+
+// get variables from the url
+include '../../app/config.php';
 if (isset($_GET['hash'])) {
   $hash = $_GET['hash'];
 } else {
   $hash = false;
 }
 
+if (isset($_GET['blockchain'])) {
+  $blockchain = $_GET['blockchain'];
+} else {
+  $blockchain = false;
+}
+$transaction = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/transaction/' . $blockchain . '/' . $hash . '?api-key=' . $deCommasApiKey . ''));
+$transaction = $transaction->result;
 ?>
 
 <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
   <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png?1595348880" alt="mainnet"
        class="h-12 w-12 p-2 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
-  <div class="text-sm font-medium leading-6 text-gray-900">Mainnet</div>
+  <div class="text-sm font-medium leading-6 text-gray-900"><?= $transaction->chain_name; ?></div>
+
 </div>
 <div class="grid grid-cols-12 gap-5 p-4">
   <?
-  $transaction = json_decode(file_get_contents('https://api.mosaic.fun/api/aaveTransactions.php?transactionHash=' . $_GET['hash']));
-  $transaction = $transaction[0];
+  //$transaction = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/transaction/' . $blockchain . '/' . $hash . '?api-key=' . $deCommasApiKey . ''));
+
+  //var_dump($transaction);
+
+  //$transaction = $transaction->result;
   ?>
   <div class="col-span-3">
     Transaction Hash:

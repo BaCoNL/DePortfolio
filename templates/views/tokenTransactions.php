@@ -93,7 +93,7 @@ if ($totalTransactions === 100){
         </td>
         <td class="py-5 text-right">
           <div class="flex justify-end">
-            <a href="transactionsDetails.php?hash=<?= $transaction->hash; ?>"
+            <a href="transactionsDetails.php?hash=<?= $transaction->hash; ?>&blockchain=<?= $transaction->chain_name; ?>"
                class="text-sm font-medium leading-6 text-indigo-600 hover:text-indigo-500">View<span
                   class="hidden sm:inline"> transaction</span></a>
           </div>
