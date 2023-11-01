@@ -6,7 +6,7 @@
   <div class="mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
     <div class="flex flex-1 items-center gap-x-6">
       <!-- Mobile menu, show/hide based on menu open state. -->
-      <button hx-get="templates/views/mobileMenu.php" hx-target="body" hx-swap="beforeend" type="button"
+      <button hx-get="templates/views/mobileMenu.php?address=<?= $address; ?>" hx-target="body" hx-swap="beforeend" type="button"
               class="-m-3 p-3 md:hidden">
         <span class="sr-only">Open main menu</span>
         <svg class="h-5 w-5 text-gray-900" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
