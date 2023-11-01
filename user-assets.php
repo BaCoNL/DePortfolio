@@ -64,7 +64,7 @@ $blockchains = json_decode(file_get_contents('https://datalayer.decommas.net/dat
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= convertToDecimal($blockchain->amount, '18'); ?></td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">$
                       <? if ($blockchain->actual_price):
-                        echo convertToDecimal($blockchain->amount, '18') * $blockchain->actual_price;
+                        echo round(convertToDecimal($blockchain->amount, '18') * $blockchain->actual_price, 2);
                       else:
                         echo 'Unknown';
                       endif; ?>
@@ -102,7 +102,14 @@ $blockchains = json_decode(file_get_contents('https://datalayer.decommas.net/dat
                       <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= sprintf('%.8f',floatval(convertToDecimal($token->amount, $token->decimals))); ?></td>
                       <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">$
                         <? if ($token->actual_price):
-                          echo sprintf('%.8f',floatval(convertToDecimal($token->amount, $token->decimals) * $token->actual_price));
+
+                          $usdAmount = round(sprintf('%.8f',floatval(convertToDecimal($token->amount, $token->decimals) * $token->actual_price)), 2);
+                          if ($usdAmount > 0):
+                            echo $usdAmount;
+                          else:
+                            echo '0.00';
+                          endif;
+
                         else:
                           echo 'Unknown';
                         endif; ?>
