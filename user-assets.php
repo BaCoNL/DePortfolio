@@ -1,6 +1,8 @@
 <?php include 'header.php';
 
 include_once 'app/functions/convertToDecimal.php';
+if ($address):
+
 
 // load all tokens of user
 $tokens = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/tokens/' . $address . '?limit=100?api-key=' . $deCommasApiKey . ''));
@@ -121,5 +123,25 @@ $blockchains = json_decode(file_get_contents('https://datalayer.decommas.net/dat
     </div>
   </main>
 
+<?php else: ?>
+  <main>
+    <div class="relative isolate overflow-hidden pt-16">
+      <div class="mx-auto grid max-w-7xl grid-cols-12  lg:px-2 xl:px-0">
+        <div class="col-span-12 text-center pt-16">
+          <div class="font-semibold text-3xl">Connect your wallet</div>
+        </div>
+        <div class="col-span-12 text-center" id="">
+          <div id="dashboardLink" class="py-3">
+            <input type="button"
+                   class="mt-5 rounded-md bg-orange-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+                   value="Connect Wallet" onclick="connect();">
+          </div>
+          <div id="account" class="py-3">
+          </div>
+        </div>
 
+      </div>
+    </div>
+  </main>
+<?php endif; ?>
 <?php include 'footer.php'; ?>
