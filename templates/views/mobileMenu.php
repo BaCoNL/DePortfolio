@@ -30,9 +30,9 @@ $address = $_GET['address'];
       </div>
     </div>
     <div class="mt-2 space-y-2" id="mobileMenuLinks">
-      <a href="dashboard?addres=<?= $address; ?>" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Dashboard</a>
-      <a href="nft?addres=<?= $address; ?>" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">NFT</a>
-      <a href="user-assets?addres=<?= $address; ?>" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Assets</a>
+      <a href="dashboard??address=<?= $address; ?>" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Dashboard</a>
+      <a href="nft?address=<?= $address; ?>" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">NFT</a>
+      <a href="user-assets?address=<?= $address; ?>" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Assets</a>
     </div>
   </div>
 
