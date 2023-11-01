@@ -16,7 +16,7 @@ if ($address):
             <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
               <div
                   class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                <? $nfts = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/nfts/' . $address . '?api-key=' . $deCommasApiKey . ''));
+                <? $nfts = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/nfts/' . $address . '?limit=20&api-key=' . $deCommasApiKey . ''));
                 foreach ($nfts->result as $nft):
 
                 ?>
@@ -26,7 +26,7 @@ if ($address):
                   $nftDetails = $nftDetails->result;
                   ?>
                   <div hx-get="templates/views/nftDetails.php?blockchain=<?= $nft->chain_name; ?>&nft=<?= $nft->contract_address; ?>&tokenID=<?= $nft->token_id; ?>"
-                       hx-trigger="load">
+                       hx-trigger="load ">
                     <div class="htmx-indicator">
                       <svg class="animate-spin h-3 w-3 mr-3 inline" xmlns="http://www.w3.org/2000/svg" fill="none"
                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
