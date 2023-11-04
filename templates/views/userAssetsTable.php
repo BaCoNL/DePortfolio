@@ -36,7 +36,8 @@ endif;
   </tr>
   </thead>
   <tbody class="bg-white">
-<? foreach ($blockchains->result as $blockchain): ?>
+<? foreach ($blockchains->result as $blockchain):
+if ($isVerified === true):?>
   <tr class="even:bg-gray-50">
     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
       <? if ($blockchain->logo_url): ?>
@@ -69,7 +70,8 @@ endif;
 
   </tr>
 
-<? endforeach; ?>
+<? endif;
+endforeach; ?>
 <?
 foreach ($tokens->result as $token):
 
