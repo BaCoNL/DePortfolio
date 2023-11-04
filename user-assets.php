@@ -30,110 +30,28 @@ if ($address):
         <div class="mt-6 overflow-hidden border-t border-gray-100">
           <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-              <div class="text-right py-5">
-                <span class="text-sm font-medium text-gray-500 mr-4">Show Shitcoins</span>
-                <label class="relative inline float-right items-center cursor-pointer">
-                  <input type="checkbox" value="" class="sr-only peer">
-                  <div
-                      class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                </label>
+              <div class="w-32 inline float-right pt-3">
+                <button class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                        hx-get="templates/views/userAssetsTable.php?address=<?= $address; ?>&verified=false" hx-target="#asset-table">
+                  Unverified assets
+                </button>
               </div>
-              <table class="min-w-full divide-y divide-gray-300">
-                <thead>
-                <tr>
-                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3">Name
-                  </th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Blockchain</th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">USD Price</th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Amount</th>
-                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">USD Value</th>
-
-                </tr>
-                </thead>
-                <tbody class="bg-white">
-                <? foreach ($blockchains->result as $blockchain): ?>
-                  <tr class="even:bg-gray-50">
-                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
-                      <? if ($blockchain->logo_url): ?>
-                        <img src="<?= $blockchain->logo_url; ?>" class="w-8 inline" alt="<?= $blockchain->name; ?>">
-                      <? else: ?>
-                        <img src="assets/img/unknown-token.jpeg" alt="Unknown Token"
-                             class="w-8 inline">
-                      <? endif; ?>
-                      <?= $blockchain->name; ?>
-                    </td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= $blockchain->chain_name; ?></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      <?
-                      if ($blockchain->actual_price):
-                        echo $blockchain->actual_price;
-                      else:
-                        echo 'Unknown';
-                      endif;
-                      ?>
-                    </td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= convertToDecimal($blockchain->amount, '18'); ?></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">$
-                      <? if ($blockchain->actual_price):
-                        echo round(convertToDecimal($blockchain->amount, '18') * $blockchain->actual_price, 2);
-                      else:
-                        echo 'Unknown';
-                      endif; ?>
-                    </td>
+              <div id="asset-table">
 
 
-                  </tr>
+                <div hx-get="templates/views/userAssetsTable.php?address=<?= $address; ?>&verified=true"
+                     hx-trigger="load">
+                  <div class="htmx-indicator">
+                    <svg class="animate-spin h-3 w-3 mr-3 inline" xmlns="http://www.w3.org/2000/svg" fill="none"
+                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                    </svg>
+                    Processing...
+                  </div>
+                </div>
+              </div>
 
-                <? endforeach; ?>
-                <?
-                foreach ($tokens->result as $token):
-
-                  if ($token->is_verified === true): ?>
-
-                    <tr class="even:bg-gray-50">
-                      <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
-                        <? if ($token->logo_url): ?>
-                          <img src="<?= $token->logo_url; ?>" class="w-8 inline" alt="<?= $token->name; ?>">
-                        <? else: ?>
-                          <img src="assets/img/unknown-token.jpeg" alt="Unknown Token"
-                               class="w-8 inline">
-                        <? endif; ?>
-                        <?= $token->name; ?>
-                      </td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= $token->chain_name; ?></td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        <?
-                        if ($token->actual_price):
-                          echo $token->actual_price;
-                        else:
-                          echo 'Unknown';
-                        endif;
-                        ?>
-                      </td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= sprintf('%.8f', floatval(convertToDecimal($token->amount, $token->decimals))); ?></td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">$
-                        <? if ($token->actual_price):
-
-                          $usdAmount = round(sprintf('%.8f', floatval(convertToDecimal($token->amount, $token->decimals) * $token->actual_price)), 2);
-                          if ($usdAmount > 0):
-                            echo $usdAmount;
-                          else:
-                            echo '0.00';
-                          endif;
-
-                        else:
-                          echo 'Unknown';
-                        endif; ?>
-                      </td>
-
-
-                    </tr>
-                  <?
-                  endif;
-                endforeach; ?>
-
-                </tbody>
-              </table>
             </div>
           </div>
         </div>
