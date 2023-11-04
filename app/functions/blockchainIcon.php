@@ -13,7 +13,7 @@ function blockchainIcon($blockchain_name)
   } else if ($blockchain_name === 'fantom') {
     $blochain_icon = 'https://assets.coingecko.com/coins/images/4001/large/Fantom_round.png?166965234';
   } else if ($blockchain_name === 'avax') {
-    $blochain_icon = 'https://assets.coingecko.com/coins/images/4713/large/matic-token-icon.png?1624446912';
+    $blochain_icon = 'https://assets.coingecko.com/coins/images/12559/standard/Avalanche_Circle_RedWhite_Trans.png?1696512369';
   } else if ($blockchain_name === 'heco') {
     $blochain_icon = 'https://assets.coingecko.com/coins/images/12467/large/HT.png?1599625397';
   } else if ($blockchain_name === 'harmony') {
@@ -29,7 +29,7 @@ function blockchainIcon($blockchain_name)
   } else if ($blockchain_name === 'moonriver') {
     $blochain_icon = 'https://assets.coingecko.com/coins/images/14482/large/moonriver.png?1628884299';
   } else if ($blockchain_name === 'avalanche') {
-    $blochain_icon = 'https://assets.coingecko.com/coins/images/4713/large/matic-token-icon.png?1624446912';
+    $blochain_icon = 'https://assets.coingecko.com/coins/images/12559/standard/Avalanche_Circle_RedWhite_Trans.png?1696512369';
   } else if ($blockchain_name === 'kcc') {
     $blochain_icon = 'https://assets.coingecko.com/coins/images/14325/large/kcc.png?1615387161';
   } else if ($blockchain_name === 'palm') {
