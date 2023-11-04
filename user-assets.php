@@ -30,10 +30,10 @@ if ($address):
         <div class="mt-6 overflow-hidden border-t border-gray-100">
           <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-              <div class="w-32 inline float-right pt-3">
+              <div class="w-48 inline float-right pt-3">
                 <button class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                         hx-get="templates/views/userAssetsTable.php?address=<?= $address; ?>&verified=false" hx-target="#asset-table">
-                  Unverified assets
+                  Show Unverified Assets
                 </button>
               </div>
               <div id="asset-table">
