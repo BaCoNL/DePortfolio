@@ -2,18 +2,16 @@
 
 include_once 'app/functions/convertToDecimal.php';
 if ($address):
-
-
 // load all tokens of user
-$tokens = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/tokens/' . $address . '?limit=100?api-key=' . $deCommasApiKey . ''));
-$countTokens = count($tokens->result);
-if ($countTokens === 100) {
-  $countTokens = '100+';
-}
+  $tokens = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/tokens/' . $address . '?limit=100?api-key=' . $deCommasApiKey . ''));
+  $countTokens = count($tokens->result);
+  if ($countTokens === 100) {
+    $countTokens = '100+';
+  }
+  $blockchains = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/coins/' . $address . '?api-key=' . $deCommasApiKey . ''));
 
 
-$blockchains = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/coins/' . $address . '?api-key=' . $deCommasApiKey . ''));
-?>
+  ?>
 
   <main>
 
@@ -21,12 +19,25 @@ $blockchains = json_decode(file_get_contents('https://datalayer.decommas.net/dat
       <!-- Recent activity table -->
       <div>
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 class="mx-auto max-w-2xl text-base font-semibold leading-6 text-gray-900 lg:mx-0 lg:max-w-none">User
-            Assets</h2>
+          <div class="grid grid-col-12">
+            <h2 class="mx-auto max-w-2xl text-base font-semibold leading-6 text-gray-900 lg:mx-0 lg:max-w-none">User
+              Assets</h2>
+
+
+
+          </div>
         </div>
         <div class="mt-6 overflow-hidden border-t border-gray-100">
           <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
+              <div class="text-right py-5">
+                <span class="text-sm font-medium text-gray-500 mr-4">Show Shitcoins</span>
+                <label class="relative inline float-right items-center cursor-pointer">
+                  <input type="checkbox" value="" class="sr-only peer">
+                  <div
+                      class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                </label>
+              </div>
               <table class="min-w-full divide-y divide-gray-300">
                 <thead>
                 <tr>
@@ -99,11 +110,11 @@ $blockchains = json_decode(file_get_contents('https://datalayer.decommas.net/dat
                         endif;
                         ?>
                       </td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= sprintf('%.8f',floatval(convertToDecimal($token->amount, $token->decimals))); ?></td>
+                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><?= sprintf('%.8f', floatval(convertToDecimal($token->amount, $token->decimals))); ?></td>
                       <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">$
                         <? if ($token->actual_price):
 
-                          $usdAmount = round(sprintf('%.8f',floatval(convertToDecimal($token->amount, $token->decimals) * $token->actual_price)), 2);
+                          $usdAmount = round(sprintf('%.8f', floatval(convertToDecimal($token->amount, $token->decimals) * $token->actual_price)), 2);
                           if ($usdAmount > 0):
                             echo $usdAmount;
                           else:
