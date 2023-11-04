@@ -2,7 +2,7 @@
 Portfolio tracker using DeCommas.
 
 ## build with
-Tailwind, HTMX ,php & Js
+Tailwind, HTMX ,php, metatmask SDK & Js
 
 ### Install
 Copy all the files to your server, with php installed. Make a copy of the config-example.php and rename it to config.php. Fill in the a api Key in the config.php file.
