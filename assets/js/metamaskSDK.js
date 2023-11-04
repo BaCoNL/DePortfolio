@@ -20,6 +20,7 @@ function updateProfileElements(account) {
         <a href="dashboard?address=${account}">Dashboard</a>
         <a href="nft?address=${account}">NFT</a>
         <a href="user-assets?address=${account}">Assets</a>
+        <a href="transactions?address=${account}">Transactions</a>
         `;
     document.getElementById("getStarted").innerHTML = `
         <a href="dashboard?address=${account}"
