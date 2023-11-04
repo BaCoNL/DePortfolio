@@ -9,32 +9,17 @@ if ($_GET['limit']) {
 }
 $address = $_GET['address'];
 
-$transactions = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/transactions/' . $address . '?limit='. $limit .'&api-key=' . $deCommasApiKey . ''));
+$transactions = json_decode(file_get_contents('https://datalayer.decommas.net/datalayer/api/v1/transactions/' . $address . '?limit=100&api-key=' . $deCommasApiKey . ''));
 
 $totalTransactions = count($transactions->result);
 if ($totalTransactions === 100){
   $totalTransactions = '100+';
 }
-$page = 2;
+
+$page = $_GET['page'] + 1;
+
 ?>
-<table class="w-full text-left">
-  <thead class="sr-only">
-  <tr>
-    <th>Amount</th>
-    <th class="hidden sm:table-cell">Blockchain</th>
-    <th>More details</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr class="text-sm leading-6 text-gray-900">
-    <th scope="colgroup" colspan="3" class="relative isolate py-2 font-semibold">
-      <time datetime="2023-03-22">Transactions (<?= $totalTransactions; ?>)</time>
-      <div class="absolute inset-y-0 right-full -z-10 w-screen border-b border-gray-200 bg-gray-50">
-        Method
-      </div>
-      <div class="absolute inset-y-0 left-0 -z-10 w-screen border-b border-gray-200 bg-gray-50"></div>
-    </th>
-  </tr>
+
   <? // Load transactions of user?>
   <?
   //  sleep(rand(1, 2));
@@ -114,7 +99,5 @@ $page = 2;
     <tr hx-get="templates/views/tokenTransactionsInfiniteTable.php?limit=<?= $limit; ?>&address=<?= $address; ?>&page=<?= $page; ?>"
         hx-trigger="revealed"
         hx-swap="afterend">
-
+      
     </tr>
-  </tbody>
-</table>
